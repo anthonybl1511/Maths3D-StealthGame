@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 5f;
     private Rigidbody rb;
     public static PlayerMovement instance;
+
+    [SerializeField] private AudioSource audioSource;
 
     private bool isSeen;
 
@@ -29,5 +31,10 @@ public class PlayerMovement : MonoBehaviour
     public bool GetIsSeen()
     {
         return isSeen;
+    }
+
+    public AudioSource GetAudioSource()
+    {
+        return audioSource;
     }
 }

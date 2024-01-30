@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float XMinRotation;
-    public float XMaxRotation;
+    [SerializeField] private float XMinRotation;
+    [SerializeField] private float XMaxRotation;
     [Range(1.0f, 10.0f)]
-    public float Xsensitivity;
+    [SerializeField] private float Xsensitivity;
     [Range(1.0f, 10.0f)]
-    public float Ysensitivity;
+    [SerializeField] private float Ysensitivity;
     private float rotAroundX, rotAroundY;
 
     void Start()

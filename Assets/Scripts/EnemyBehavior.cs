@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class EnemyBehavior : MonoBehaviour
             TextCanvas.SetActive(true);
             if (Input.GetKeyDown("e"))
             {
+                PlayerMovement.instance.GetAudioSource().Play();
+
                 Destroy(gameObject);
             }
         }
@@ -25,7 +29,9 @@ public class EnemyBehavior : MonoBehaviour
         }
 
         //check front to see
-        if (Vector3.Dot(transform.forward.normalized, PlayerMovement.instance.transform.position.normalized) < -0.7f && Vector3.Dot(transform.right.normalized, PlayerMovement.instance.transform.position.normalized) < 0.4f && Vector3.Dot(transform.right.normalized, PlayerMovement.instance.transform.position.normalized) > -0.4f && transform.forward.z * transform.position.z - PlayerMovement.instance.transform.position.z < -1)
+        if (MathF.Abs(Vector3.Angle(transform.forward, PlayerMovement.instance.transform.position - transform.position)) < 40 
+            && Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < 20
+            && !Physics.Linecast(transform.position, PlayerMovement.instance.transform.position, 5))
         {
             SeeCanvas.SetActive(true);
 
